@@ -2,5 +2,5 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 echo "Runnig eslint fix ..."
-yarn run eslint --fix
+yarn run lint --fix
 echo "Run successfull ..."
