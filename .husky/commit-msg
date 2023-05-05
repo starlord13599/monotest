@@ -11,3 +11,4 @@ if ! echo $COMMIT_MSG | grep -qE $JIRA_PATTERN; then
     exit 1
 else
     echo "JIRA number $JIRA_NUMBER found in commit message."
+fi
