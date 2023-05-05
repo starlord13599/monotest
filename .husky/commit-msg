@@ -1,12 +1,12 @@
 #!/bin/sh
-# Extract JIRA number from the commit message
-JIRA_NUMBER=$(echo $1 | grep -oE '^[A-Z]{2,}-[0-9]+')
 
-# Check if JIRA number exists in commit message
-if [ -z "$JIRA_NUMBER" ]
-then
-  echo "Error: No JIRA number found in commit message."
-  exit 1
-else
-  echo "JIRA number $JIRA_NUMBER found in commit message."
+COMMIT_MSG_FILE=$1
+
+COMMIT_MSG=$(cat $COMMIT_MSG_FILE | sed 's/#.*//' | tr -d '\n' | tr -d ' ')
+
+JIRA_PATTERN="[A-Z]+-[0-9]+"
+
+if ! echo $COMMIT_MSG | grep -qE $JIRA_PATTERN; then
+    echo "ERROR: Commit message does not contain a valid Jira issue key (e.g., 'PROJ-123')."
+    exit 1
 fi
