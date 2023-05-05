@@ -9,4 +9,5 @@ JIRA_PATTERN="[A-Z]+-[0-9]+"
 if ! echo $COMMIT_MSG | grep -qE $JIRA_PATTERN; then
     echo "ERROR: Commit message does not contain a valid Jira issue key (e.g., 'PROJ-123')."
     exit 1
-fi
+else
+    echo "JIRA number $JIRA_NUMBER found in commit message."
