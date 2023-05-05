@@ -1,4 +1,12 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+#!/bin/sh
+# Extract JIRA number from the commit message
+JIRA_NUMBER=$(echo $1 | grep -oE '^[A-Z]{2,}-[0-9]+')
 
-npx --no --commitlint --edit "$1"
+# Check if JIRA number exists in commit message
+if [ -z "$JIRA_NUMBER" ]
+then
+  echo "Error: No JIRA number found in commit message."
+  exit 1
+else
+  echo "JIRA number $JIRA_NUMBER found in commit message."
+fi
