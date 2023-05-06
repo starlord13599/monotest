@@ -1,4 +1,14 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+#!/bin/sh
 
-npx --no --commitlint --edit "$1"
+COMMIT_MSG_FILE=$1
+
+COMMIT_MSG=$(cat $COMMIT_MSG_FILE | sed 's/#.*//' | tr -d '\n' | tr -d ' ')
+
+JIRA_PATTERN="[A-Z]+-[0-9]+"
+
+if ! echo $COMMIT_MSG | grep -qE $JIRA_PATTERN; then
+    echo "ERROR: Commit message does not contain a valid Jira issue key (e.g., 'PROJ-123')."
+    exit 1
+else
+    echo "JIRA number $JIRA_NUMBER found in commit message."
+fi

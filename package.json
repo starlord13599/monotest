@@ -11,7 +11,9 @@
     "@typescript-eslint/parser": "latest",
     "eslint": "latest",
     "eslint-plugin-react": "latest",
-    "husky": "^8.0.0"
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.2",
+    "prettier": "2.8.8"
   },
   "scripts": {
     "postinstall": "husky install"
